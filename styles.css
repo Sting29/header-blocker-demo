@@ -82,7 +82,26 @@ body {
 }
 .hero { --cover-bg: var(--hero); background: var(--hero); }
 .content { --cover-bg: var(--page); background: var(--page); }
-.outro { --cover-bg: var(--hero); background: var(--hero); min-height: 90svh; padding-bottom: 8rem; }
+.outro {
+  --cover-bg: var(--hero);
+  background: var(--hero);
+  display: flex;
+  flex-direction: column;
+  min-height: 90svh;
+  padding-bottom: 8rem;
+}
+.copyright-wrap {
+  width: min(100%, calc(36rem + 2rem));
+  max-width: none;
+  box-sizing: border-box;
+  margin-top: auto;
+}
+.copyright {
+  margin: 0;
+  padding-top: 1.5rem;
+  font-size: 0.8125rem;
+  color: var(--ink-soft);
+}
 
 .hero .wrap { padding-block: 2.5rem 3.5rem; }
 .eyebrow {
