@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Header Blocker Demo</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;600&display=swap">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <span class="logo">scroll.notes</span>
+    <span class="nav"><span>Posts</span><span>About</span></span>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="cover"></div>
+  <div class="wrap">
+    <p class="eyebrow">CSS demo</p>
+    <h1>A sticky header that never changes color</h1>
+    <p class="meta">Scroll down. Three sections, three colors, no scroll listeners.</p>
+  </div>
+</section>
+
+<main class="content">
+  <div class="cover"></div>
+  <div class="wrap prose">
+    <h2>What you are looking at</h2>
+    <p>The header at the top of the screen has no background. It is fixed in place and fully transparent, and it was never given a color.</p>
+    <p>What changes is the box behind it. Each section starts with a blocker: an empty element, as tall as the header, filled with that section's color.</p>
+
+    <h2>How the handoff works</h2>
+    <p>A sticky element follows you only while its parent is on screen. The blocker in the first section rides under the header, then leaves together with that section.</p>
+    <p>The next section's blocker is already waiting at the edge. It takes over in the same frame, so the header looks like it changed color.</p>
+    <p>No scroll position is read and no class is toggled. The browser does it on every frame.</p>
+
+    <h2>What it costs</h2>
+    <p>A blocker needs a place to sit when the page is scrolled to the top. That is an empty strip, as tall as the header, at the start of every section.</p>
+    <p>If a hero has a deep curve, or an image that runs to the very top edge, there is nowhere to hide it.</p>
+    <p>Give blockers <code>z-index: 1</code> and keep your own positioned content at <code>auto</code>. A positioned element later in the DOM with a higher index would paint over the blocker.</p>
+
+    <h2>Try it on this page</h2>
+    <ul>
+      <li><strong>No blockers:</strong> the words slide straight under the header text.</li>
+      <li><strong>Blockers:</strong> the header looks solid, and the color switches at each section edge.</li>
+      <li><strong>X-ray:</strong> draws the blockers as dashed boxes and outlines the header in blue.</li>
+    </ul>
+    <p>Use Hide for a clean screen recording.</p>
+  </div>
+</main>
+
+<section class="outro">
+  <div class="cover"></div>
+  <div class="wrap prose">
+    <h2>Recap</h2>
+    <ul>
+      <li>The header is <code>position: fixed</code> and transparent.</li>
+      <li>Each section has one blocker as its first child, <code>position: sticky</code> with <code>top: 0</code>.</li>
+      <li>Blocker height equals header height. Blocker color equals section color.</li>
+    </ul>
+    <p class="note">The header effect is pure CSS. The bottom bar is the only script on this page.</p>
+  </div>
+</section>
+
+<div class="dock" id="dock">
+  <div class="wrap">
+    <p class="legend" id="legend" hidden>Dashed orange: blockers. Blue outline: the fixed header.</p>
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Blockers mode">
+        <button type="button" id="mode-off" aria-pressed="false">No blockers</button>
+        <button type="button" id="mode-on" aria-pressed="true">Blockers</button>
+      </div>
+      <button type="button" class="tool" id="xray" aria-pressed="false">X-ray</button>
+      <button type="button" class="tool" id="hide">Hide</button>
+    </div>
+  </div>
+</div>
+<button type="button" class="restore" id="restore" hidden>Controls</button>
+
+<script src="demo.js"></script>
+</body>
+</html>
